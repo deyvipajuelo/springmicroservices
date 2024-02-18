@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: microservice-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: microservice-course
+            uri: http://localhost:8091
+            predicates:
+              - Path=/api/v1/course/**
+          - id: microservice-student
+            uri: http://localhost:8090
+            predicates:
+              - Path=/api/v1/student/**
+
+eureka:
+  client:
+    register-with-eureka: false
